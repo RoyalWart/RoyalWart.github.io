@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoyalWart | About Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://css.gg/css?=|arrow-right" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the black theme and layout */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Black background */
+            color: #E5E7EB; /* text-gray-200 */
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #F9FAFB; /* text-gray-50 */
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .project-card {
+            background-color: #111111; /* Very dark gray for cards */
+            border: 1px solid #222222;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.05), 0 4px 6px -2px rgba(255, 255, 255, 0.03);
+        }
+        .section {
+             scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-800/50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="text-2xl font-extrabold tracking-tighter text-white">
+                    RoyalWart
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <!-- Mobile menu button can be added here if needed -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="section min-h-screen flex items-center bg-black">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight mb-4">
+                    Low-Level & Open-Source
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                    Hi, I'm RoyalWart. A teenage developer and designer passionate about game making, open-source software, and user privacy.
+                </p>
+                <div class="mt-8">
+                    <a href="#projects" class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section py-20 md:py-32 bg-[#050505]">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        I am a young developer and designer with a passion for low-level development and game making. I'm always eager to dive deep into how things work, which is why I'm currently learning Assembly.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        I believe in the power of community and collaboration, which drives my love for anything open-source. In all my work, I hold a strong commitment to valuing and protecting the privacy of users.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">My Major Projects</h2>
+                    <p class="text-gray-400 mt-2">A selection of my proudest work.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project Card 1: DCB Protocol -->
+                    <div class="project-card rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=DCB+Protocol" alt="DCB Protocol" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">DCB Protocol</h3>
+                            <p class="text-gray-400 mb-4 flex-grow">A Distributed Communication and Broadcasting protocol designed for efficiency, security, and decentralized networks.</p>
+                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">View Details <i class="gg-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: openbloom -->
+                    <div class="project-card rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=openbloom" alt="openbloom Game" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">openbloom</h3>
+                            <p class="text-gray-400 mb-4 flex-grow">An open-world, Minecraft-like game built on open-source principles, featuring a vast world to explore and awesome bosses to fight.</p>
+                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">Explore World <i class="gg-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Inspire Club -->
+                    <div class="project-card rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Inspire+Club" alt="Inspire Club" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Inspire Club</h3>
+                            <p class="text-gray-400 mb-4 flex-grow">A community for students (grades 4-12) focused on fostering innovative ideas by providing teams, funding, and mentorship to build startups.</p>
+                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">Join on Discord <i class="gg-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section py-20 md:py-32 bg-[#050505]">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
+                    <p class="text-gray-400 mb-8">
+                        I'm always open to new opportunities and collaborations. If you have a project in mind or just want to say hello, feel free to reach out.
+                    </p>
+                    <a href="mailto:hello@royalwart.dev" class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors duration-300 text-lg">
+                        hello@royalwart.dev
+                    </a>
+                    <div class="flex justify-center space-x-6 mt-10">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.013c0 4.418 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.013C22 6.477 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                        </a>
+                         <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.47 1.344h2.94v8.59H3.535v-8.59zM17.67 2H6.33C4.219 2 2.5 3.719 2.5 5.83v12.34C2.5 20.281 4.219 22 6.33 22h11.34C19.781 22 21.5 20.281 21.5 18.17V5.83C21.5 3.719 19.781 2 17.67 2z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800/50">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 RoyalWart. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for active navigation link highlighting on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4 // 40% of the section must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
