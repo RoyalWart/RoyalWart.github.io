@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyalWart | About Me</title>
+    <title>RoyalWart | Developer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://css.gg/css?=|arrow-right" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom styles for the black theme and layout */
+        :root {
+            --glow-color: rgba(155, 89, 255, 0.3);
+            --glow-hover: rgba(155, 89, 255, 0.5);
+            --gradient-start: #8B5CF6;
+            --gradient-end: #3B82F6;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000; /* Black background */
-            color: #E5E7EB; /* text-gray-200 */
+            background-color: #000000;
+            color: #E5E7EB;
+            overflow-x: hidden;
         }
+        
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
         .nav-link {
             position: relative;
             transition: color 0.3s ease;
         }
+        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -28,43 +49,182 @@
             bottom: -4px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #F9FAFB; /* text-gray-50 */
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
             transition: width 0.3s ease;
         }
+        
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
         }
+        
         .project-card {
-            background-color: #111111; /* Very dark gray for cards */
+            background-color: #111111;
             border: 1px solid #222222;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            z-index: -1;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.05), 0 4px 6px -2px rgba(255, 255, 255, 0.03);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
         }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
         .section {
-             scroll-margin-top: 80px;
+            scroll-margin-top: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, var(--glow-color) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+        
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%);
+            background-size: 400px 400px;
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .terminal {
+            background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+            border: 1px solid #222;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .terminal-header {
+            background: #1a1a1a;
+            border-bottom: 1px solid #222;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--gradient-start);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--gradient-start); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header & Navigation -->
-    <header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-800/50">
+    <header class="bg-black/90 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-800/50 shadow-xl">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="#home" class="text-2xl font-extrabold tracking-tighter text-white">
-                    RoyalWart
+                <a href="#home" class="text-2xl font-extrabold tracking-tighter text-white flex items-center glow-effect">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">RoyalWart</span>
+                    <span class="ml-2 text-xs bg-gray-800 px-2 py-1 rounded-full text-gray-300">dev</span>
                 </a>
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
                     <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
                     <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
                 </nav>
                 <div class="md:hidden">
-                    <!-- Mobile menu button can be added here if needed -->
+                    <button class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -73,101 +233,229 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="home" class="section min-h-screen flex items-center bg-black">
+        <section id="home" class="section min-h-screen flex items-center bg-black hero-pattern">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight mb-4">
-                    Low-Level & Open-Source
+                <div class="floating mb-10 inline-block">
+                    <div class="terminal w-full max-w-md mx-auto overflow-hidden">
+                        <div class="terminal-header p-3 flex">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                            <div class="flex-grow text-center text-gray-400 text-sm code-font">royalwart@portfolio: ~</div>
+                        </div>
+                        <div class="p-6 text-left">
+                            <div class="code-font text-green-400 mb-2">$ whoami</div>
+                            <div class="typewriter text-xl font-bold text-white mb-6">RoyalWart - Developer & Designer</div>
+                            <div class="code-font text-green-400 mb-2">$ cat interests.txt</div>
+                            <div class="text-gray-300 mb-1">> Low-Level Programming</div>
+                            <div class="text-gray-300 mb-1">> Game Development</div>
+                            <div class="text-gray-300 mb-1">> Open-Source Advocacy</div>
+                            <div class="text-gray-300 mb-1">> User Privacy</div>
+                            <div class="code-font text-green-400 mt-4">$ <span class="blink">_</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6">
+                    <span class="hero-gradient">Low-Level</span>
+                    <span class="block mt-2 text-white">& Open-Source</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-                    Hi, I'm RoyalWart. A teenage developer and designer passionate about game making, open-source software, and user privacy.
+                
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
+                    Teenage developer and designer passionate about game making, open-source software, and user privacy.
                 </p>
+                
                 <div class="mt-8">
-                    <a href="#projects" class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                    <a href="#projects" class="glow-effect bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 inline-flex items-center group">
                         View My Work
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="section py-20 md:py-32 bg-[#050505]">
+        <section id="about" class="section py-20 md:py-32 bg-[#050505] grid-pattern">
             <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        I am a young developer and designer with a passion for low-level development and game making. I'm always eager to dive deep into how things work, which is why I'm currently learning Assembly.
-                    </p>
-                    <p class="text-gray-300 leading-relaxed">
-                        I believe in the power of community and collaboration, which drives my love for anything open-source. In all my work, I hold a strong commitment to valuing and protecting the privacy of users.
-                    </p>
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 text-center">About Me</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-12 rounded-full"></div>
+                    
+                    <div class="bg-black/50 p-8 rounded-xl border border-gray-800 shadow-lg">
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            I'm a young developer and designer diving deep into the world of low-level systems and game development. My curiosity drives me to understand how things work at their core, which is why I'm currently learning Assembly and exploring hardware-level programming.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            For me, technology is about empowerment and accessibility. I'm a strong advocate for open-source software because I believe in the power of community-driven development. When I'm not coding, you'll find me designing game mechanics or exploring new ways to create engaging user experiences.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            In everything I create, I prioritize user privacy and ethical design. I believe technology should serve people, not exploit them. My goal is to build tools and experiences that respect users while pushing technical boundaries.
+                        </p>
+                        
+                        <div class="mt-10 flex justify-center">
+                            <div class="inline-flex space-x-4">
+                                <div class="bg-gray-900 px-4 py-2 rounded-lg text-sm text-gray-300">x86 Assembly</div>
+                                <div class="bg-gray-900 px-4 py-2 rounded-lg text-sm text-gray-300">C/C++</div>
+                                <div class="bg-gray-900 px-4 py-2 rounded-lg text-sm text-gray-300">Game Design</div>
+                                <div class="bg-gray-900 px-4 py-2 rounded-lg text-sm text-gray-300">Open Source</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section py-20 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Technical Skills</h2>
+                    <p class="text-gray-400">Where I focus my learning and development</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-purple-500/30 transition-colors">
+                        <div class="text-purple-500 text-4xl mb-4">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Low-Level Systems</h3>
+                        <p class="text-gray-400">Exploring hardware interactions, memory management, and performance optimization at the system level.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-blue-500/30 transition-colors">
+                        <div class="text-blue-500 text-4xl mb-4">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Game Development</h3>
+                        <p class="text-gray-400">Creating engaging game experiences with a focus on mechanics, performance, and player immersion.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-green-500/30 transition-colors">
+                        <div class="text-green-500 text-4xl mb-4">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Open Source</h3>
+                        <p class="text-gray-400">Contributing to and maintaining projects that promote collaboration and accessibility in software.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-yellow-500/30 transition-colors">
+                        <div class="text-yellow-500 text-4xl mb-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Privacy & Security</h3>
+                        <p class="text-gray-400">Implementing solutions that prioritize user data protection and ethical data practices.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="section py-20 md:py-32 bg-black">
+        <section id="projects" class="section py-20 md:py-32 bg-[#080808]">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">My Major Projects</h2>
-                    <p class="text-gray-400 mt-2">A selection of my proudest work.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">My Major Projects</h2>
+                    <p class="text-gray-400">A selection of my proudest work</p>
                 </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
                     <!-- Project Card 1: DCB Protocol -->
-                    <div class="project-card rounded-lg overflow-hidden flex flex-col">
-                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=DCB+Protocol" alt="DCB Protocol" class="w-full h-48 object-cover">
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col">
+                        <div class="relative">
+                            <div class="bg-gradient-to-b from-gray-900 to-black w-full h-48 flex items-center justify-center">
+                                <div class="text-5xl text-purple-500">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-purple-900 text-purple-200 text-xs px-2 py-1 rounded-full">Protocol</div>
+                        </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">DCB Protocol</h3>
                             <p class="text-gray-400 mb-4 flex-grow">A Distributed Communication and Broadcasting protocol designed for efficiency, security, and decentralized networks.</p>
-                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">View Details <i class="gg-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">
+                                View Details 
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Project Card 2: openbloom -->
-                    <div class="project-card rounded-lg overflow-hidden flex flex-col">
-                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=openbloom" alt="openbloom Game" class="w-full h-48 object-cover">
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col">
+                        <div class="relative">
+                            <div class="bg-gradient-to-b from-gray-900 to-black w-full h-48 flex items-center justify-center">
+                                <div class="text-5xl text-blue-500">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-blue-900 text-blue-200 text-xs px-2 py-1 rounded-full">Game</div>
+                        </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">openbloom</h3>
-                            <p class="text-gray-400 mb-4 flex-grow">An open-world, Minecraft-like game built on open-source principles, featuring a vast world to explore and awesome bosses to fight.</p>
-                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">Explore World <i class="gg-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                            <p class="text-gray-400 mb-4 flex-grow">An open-world, Minecraft-like game built on open-source principles, featuring a vast world to explore and bosses to fight.</p>
+                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">
+                                Explore World 
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Project Card 3: Inspire Club -->
-                    <div class="project-card rounded-lg overflow-hidden flex flex-col">
-                        <img src="https://placehold.co/600x400/000000/FFFFFF?text=Inspire+Club" alt="Inspire Club" class="w-full h-48 object-cover">
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col">
+                        <div class="relative">
+                            <div class="bg-gradient-to-b from-gray-900 to-black w-full h-48 flex items-center justify-center">
+                                <div class="text-5xl text-green-500">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-green-900 text-green-200 text-xs px-2 py-1 rounded-full">Community</div>
+                        </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Inspire Club</h3>
-                            <p class="text-gray-400 mb-4 flex-grow">A community for students (grades 4-12) focused on fostering innovative ideas by providing teams, funding, and mentorship to build startups.</p>
-                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">Join on Discord <i class="gg-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
+                            <p class="text-gray-400 mb-4 flex-grow">A community for students focused on fostering innovative ideas by providing teams, funding, and mentorship to build startups.</p>
+                            <a href="#" class="group text-white font-semibold hover:underline mt-auto inline-flex items-center">
+                                Join on Discord 
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
-
+                </div>
+                
+                <div class="text-center mt-16">
+                    <a href="#" class="inline-flex items-center text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github mr-2"></i>
+                        Explore more on GitHub
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section py-20 md:py-32 bg-[#050505]">
+        <section id="contact" class="section py-20 md:py-32 bg-[#050505] grid-pattern">
             <div class="container mx-auto px-6">
-                <div class="text-center max-w-2xl mx-auto">
+                <div class="max-w-2xl mx-auto text-center">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
-                    <p class="text-gray-400 mb-8">
+                    <p class="text-gray-400 mb-10">
                         I'm always open to new opportunities and collaborations. If you have a project in mind or just want to say hello, feel free to reach out.
                     </p>
-                    <a href="mailto:niranjanakappillil@gmail.com" class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors duration-300 text-lg">
-                        niranjanakappillil@gmail.com
-                    </a>
-                    <div class="flex justify-center space-x-6 mt-10">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.013c0 4.418 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.013C22 6.477 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                    
+                    <div class="p-8 bg-black/50 rounded-xl border border-gray-800 shadow-lg">
+                        <a href="mailto:niranjanakappillil@gmail.com" class="glow-effect bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 text-lg inline-block mb-8 pulse">
+                            niranjanakappillil@gmail.com
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                        </a>
-                         <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.47 1.344h2.94v8.59H3.535v-8.59zM17.67 2H6.33C4.219 2 2.5 3.719 2.5 5.83v12.34C2.5 20.281 4.219 22 6.33 22h11.34C19.781 22 21.5 20.281 21.5 18.17V5.83C21.5 3.719 19.781 2 17.67 2z" clip-rule="evenodd" /></svg>
-                        </a>
+                        
+                        <div class="flex justify-center space-x-8 mt-10">
+                            <a href="#" class="glow-effect w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center text-gray-300 hover:text-white transition-colors hover:bg-gradient-to-r from-purple-600/20 to-blue-600/20">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="glow-effect w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center text-gray-300 hover:text-white transition-colors hover:bg-gradient-to-r from-purple-600/20 to-blue-600/20">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="glow-effect w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center text-gray-300 hover:text-white transition-colors hover:bg-gradient-to-r from-purple-600/20 to-blue-600/20">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#" class="glow-effect w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center text-gray-300 hover:text-white transition-colors hover:bg-gradient-to-r from-purple-600/20 to-blue-600/20">
+                                <i class="fab fa-discord text-xl"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,40 +463,65 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black border-t border-gray-800/50">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2025 RoyalWart. All Rights Reserved.</p>
+    <footer class="bg-black border-t border-gray-800/50 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-500 mb-4 md:mb-0">
+                    &copy; 2025 RoyalWart. All Rights Reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors">Terms</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition-colors">Sitemap</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        // JavaScript for active navigation link highlighting on scroll
+        // JavaScript for animations and interactions
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.section');
             const navLinks = document.querySelectorAll('.nav-link');
-
+            
+            // Add visible class to hero section immediately
+            document.querySelector('#home').classList.add('visible');
+            
+            // Observer for section animations
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.4 // 40% of the section must be visible
+                threshold: 0.2
             };
-
+            
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Navigation highlighting
                         navLinks.forEach(link => {
                             link.classList.remove('active');
                             if (link.getAttribute('href').substring(1) === entry.target.id) {
                                 link.classList.add('active');
                             }
                         });
+                        
+                        // Section animation
+                        entry.target.classList.add('visible');
                     }
                 });
             }, observerOptions);
-
+            
             sections.forEach(section => {
-                observer.observe(section);
+                if (section.id !== 'home') {
+                    observer.observe(section);
+                }
             });
+            
+            // Terminal blinking cursor animation
+            setInterval(() => {
+                const blink = document.querySelector('.blink');
+                blink.style.visibility = blink.style.visibility === 'hidden' ? 'visible' : 'hidden';
+            }, 500);
         });
     </script>
 </body>
